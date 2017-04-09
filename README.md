@@ -18,7 +18,7 @@ If using Django's runserver, make sure you tell it to bind to 0.0.0.0:8000 to sh
 ## PostgreSQL setup:
 
 ```
-sudo su - psql -f /vagrant/vagrant_provision/create_skribblr_db.sql postgresql
+sudo su -c 'psql -f /vagrant/vagrant_provision/create_skribblr_db.sql' postgres
 ```
 
 ## Python Vagrant Virtualenv Setup:

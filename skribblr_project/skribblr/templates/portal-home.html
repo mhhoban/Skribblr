@@ -1,0 +1,37 @@
+{% load staticfiles %}
+<html>
+
+  <head>
+    <title> Skribblr Author Portal Home </title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/skribblr_portal.css' %}">
+  </head>
+
+  <body>
+    <h1> Author Portal </h1>
+
+    <div class="row">
+
+      <div class="col-md-6">
+
+        <button id="compose-btn" type="button" class="btn btn-primary">
+          Compose Entry
+        </button>
+
+      </div>
+
+      <div class="col-md-6">
+
+        <a href='/portal/entry-list'>
+        <button id="compose-btn" type="button" class="btn btn-primary">
+          View Entries
+        </button></a>
+
+      </div>
+
+
+    </div>
+
+  </body>
+
+</html>

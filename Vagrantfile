@@ -6,7 +6,7 @@ Vagrant.configure(2) do |config|
 
   # configure skribblr-dev box
   config.vm.define "skribblr_dev" do |skribblr_dev|
-    skribblr_dev.vm.box = "ubuntu/xenial64"
+    skribblr_dev.vm.box = "bento/ubuntu-16.04"
     skribblr_dev.vm.provision :shell, path: "vagrant_provision/skribblr_provision.sh"
 
     # Create a forwarded port mapping which allows access to a specific port

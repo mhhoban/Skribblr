@@ -1,0 +1,26 @@
+{% load staticfiles %}
+<html>
+
+  <head>
+    <title> Skribblr Author Portal: Edit Entry </title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/skribblr_portal.css' %}">
+  </head>
+
+  <body>
+    <h1> Edit Entry: </h1>
+
+    <div>
+      {{ entry.title }}
+
+      {{ entry.tldr }}
+
+    </div>
+
+    <div>
+      {{ entry.content}}
+    </div>
+
+  </body>
+
+</html>

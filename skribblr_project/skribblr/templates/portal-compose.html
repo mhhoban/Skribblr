@@ -1,0 +1,36 @@
+{% load staticfiles %}
+<html>
+
+  <head>
+    <title> Skribblr Author Portal: Compose </title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/skribblr_portal.css' %}">
+  </head>
+
+  <body>
+    <h1> Compose Entry </h1>
+
+    <form action="/portal/compose/add" method="post">
+      <div>
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="entry_title">
+      </div>
+
+      <div>
+        <label for "tldr">tldr:</label>
+        <input type="text" id="tldr" name="entry_tldr">
+      </div>
+
+      <div>
+        <label for "content">Entry Content:</label>
+        <textarea id="content" name="entry_content"></textarea>
+      </div>
+
+      <div>
+        <button type="submit" id="submit" class="btn btn-primary">Post!</button>
+        {% csrf_token %}
+    </form>
+
+  </body>
+
+</html>
