@@ -13,21 +13,21 @@
     <form action="/portal/compose/add" method="post">
       <div>
         <label for="title">Title:</label>
-        <input type="text" id="title" name="entry_title">
+        <input type="text" id="title-field" name="entry_title">
       </div>
 
       <div>
         <label for "tldr">tldr:</label>
-        <input type="text" id="tldr" name="entry_tldr">
+        <input type="text" id="tldr-field" name="entry_tldr">
       </div>
 
       <div>
         <label for "content">Entry Content:</label>
-        <textarea id="content" name="entry_content"></textarea>
+        <textarea id="content-field" name="entry_content"></textarea>
       </div>
 
       <div>
-        <button type="submit" id="submit" class="btn btn-primary">Post!</button>
+        <button type="submit" id="submit-btn" class="btn btn-primary">Post!</button>
         {% csrf_token %}
     </form>
 

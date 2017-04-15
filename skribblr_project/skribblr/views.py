@@ -14,6 +14,7 @@ def author_portal_compose(request):
 
 def portal_add_entry(request):
 
+    import pdb; pdb.set_trace()
     # shim for early dev purposes:
     test_author = Author.objects.first()
 
@@ -31,7 +32,7 @@ def portal_list_entries(request):
     return render(request, 'portal-list.html', {'entries': entries})
 
 def portal_edit_entry(request, entry_id):
-    entry = Entry.objects.get(id=entry_id)
+    entry = Entry.objects.get(id=int(entry_id)).first()
     return render(request, 'portal-edit.html', {'entry': entry})
 
 def portal_update_entry(request, entry_id):

@@ -27,7 +27,7 @@ While not strictly necessary, it is highly recommended to work out of a virtual 
 sudo pip install virtualenv
 virtualenv /vagrant/venv
 source /vagrant/venv/bin/activate
-pip install django psycopg2 pyyaml
+pip install django psycopg2 pyyaml xvfbwrapper
 ```
 
 ## License
