@@ -1,0 +1,4 @@
+- model: skribblr.author
+  pk: 1
+  fields:
+    name: test author

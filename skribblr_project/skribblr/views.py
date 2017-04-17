@@ -14,7 +14,7 @@ def author_portal_compose(request):
 
 def portal_add_entry(request):
 
-    import pdb; pdb.set_trace()
+    #import pdb; pdb.set_trace()
     # shim for early dev purposes:
     test_author = Author.objects.first()
 
@@ -45,3 +45,9 @@ def portal_update_entry(request, entry_id):
     entry.save()
 
     return render(request, 'portal-home.html')
+
+def portal_delete_entry(request, entry_id):
+    """
+    Delete entry with PK entry_id from DB
+    """
+    pass

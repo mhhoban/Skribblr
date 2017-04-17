@@ -6,6 +6,7 @@ from skribblr.test_utils import SkribTestUtil
 from xvfbwrapper import Xvfb
 
 class AuthorPortalBasicFunction(LiveServerTestCase):
+    fixtures = ['test_authors.yaml']
 
     def setUp(self):
         self.xvfb = Xvfb(width=1280, height=720)

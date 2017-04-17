@@ -10,7 +10,8 @@ from skribblr.views import (author_portal_home,
                             home_page,
                             portal_add_entry,
                             portal_list_entries,
-                            portal_update_entry)
+                            portal_update_entry,
+                            portal_delete_entry)
 import pytz
 
 class EntryModelTest(TestCase):
@@ -146,6 +147,21 @@ class AuthorPortalTest(TestCase):
         self.assertEqual(updated_entry.tldr,
                          update_data['updated_tldr'],
                          'PortalUpdate not updating entry tldr')
+
+    def test_PortalDelete_deletes_entry(self):
+        test_util = SkribTestUtil()
+
+        total_entries = len(Entry.objects.all())
+        #import pdb; pdb.set_trace()
+
+        self.assertEqual(total_entries,
+                         0,
+                         'Starting total entries not 0')
+
+        test_author = test_util.create_authors(1)
+        test_entry = test_util.create_entries(1)
+
+
 
 class HomePageTest(TestCase):
 
