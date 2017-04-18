@@ -62,7 +62,9 @@ class SkribTestUtil():
                           'author': author,
                           'date': date,
                           'content': content,
-                          'tldr': tldr}
+                          'tldr': tldr,
+                          'id': test_entry.id
+                          }
 
             i +=1
 

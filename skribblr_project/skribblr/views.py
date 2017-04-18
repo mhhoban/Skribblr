@@ -1,5 +1,6 @@
 from datetime import datetime
 import pytz
+from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from skribblr.models import Author, Entry
 
@@ -14,7 +15,6 @@ def author_portal_compose(request):
 
 def portal_add_entry(request):
 
-    #import pdb; pdb.set_trace()
     # shim for early dev purposes:
     test_author = Author.objects.first()
 
@@ -50,4 +50,14 @@ def portal_delete_entry(request, entry_id):
     """
     Delete entry with PK entry_id from DB
     """
-    pass
+
+    if request.method != 'DELETE':
+        return(HttpResponse(status=404))
+
+    else:
+        try:
+            entry = Entry.objects.get(id=entry_id)
+        except DoesNotExist:
+            return(HttpResponse(status=404))
+        if(entry.delete()):
+            return(HttpResponse(status=200))

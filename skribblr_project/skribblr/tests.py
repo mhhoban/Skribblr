@@ -161,7 +161,22 @@ class AuthorPortalTest(TestCase):
         test_author = test_util.create_authors(1)
         test_entry = test_util.create_entries(1)
 
+        total_entries = len(Entry.objects.all())
+        self.assertEqual(total_entries,
+                         1,
+                         'Entry not showing up after creation')
 
+        response = self.client.delete(
+            '/portal/delete/' + str(test_entry[0]['id'])
+        )
+
+        self.assertEqual(response.status_code,
+                         200,
+                         'Delete entry request unsuccessful')
+        total_entries = len(Entry.objects.all())
+        self.assertEqual(total_entries,
+                         0,
+                         'PortalDelete Not Deleting Entry')
 
 class HomePageTest(TestCase):
 
