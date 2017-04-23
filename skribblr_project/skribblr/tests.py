@@ -11,7 +11,8 @@ from skribblr.views import (author_portal_home,
                             portal_add_entry,
                             portal_list_entries,
                             portal_update_entry,
-                            portal_delete_entry)
+                            portal_delete_entry,
+                            view_entry)
 import pytz
 
 class EntryModelTest(TestCase):
@@ -166,17 +167,47 @@ class AuthorPortalTest(TestCase):
                          1,
                          'Entry not showing up after creation')
 
-        response = self.client.delete(
+        response = self.client.post(
             '/portal/delete/' + str(test_entry[0]['id'])
         )
 
         self.assertEqual(response.status_code,
-                         200,
+                         302,
                          'Delete entry request unsuccessful')
         total_entries = len(Entry.objects.all())
         self.assertEqual(total_entries,
                          0,
                          'PortalDelete Not Deleting Entry')
+
+
+class EntryPageTest(TestCase):
+
+    def test_does_Entry_resolve_to_correct_view(self):
+        test_util = SkribTestUtil()
+
+        test_author = test_util.create_authors(1)
+        test_entry = test_util.create_entries(1)
+
+        response = resolve('/entry/' + str(test_entry[0]['id']))
+        self.assertEqual(response.func,
+                         view_entry,
+                         'view entry URL not resolving to view_entry')
+
+    def test_entry_returns_correct_html(self):
+
+        test_util = SkribTestUtil()
+
+        test_author = test_util.create_authors(1)
+        test_entry = test_util.create_entries(1)
+
+        response = self.client.get('/entry/' + str(test_entry[0]['id']))
+        expected_html = render_to_string('view-entry.html',
+            {'entry': {'title': 'entry title 0', 'content': 'entry content 0',
+            'tldr': 'tldr 0'}})
+
+        self.assertEqual(response.content,
+                         expected_html,
+                         'ViewEntry rendering incorrect template')
 
 class HomePageTest(TestCase):
 

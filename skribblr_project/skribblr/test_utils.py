@@ -45,7 +45,7 @@ class SkribTestUtil():
             author = Author.objects.filter(name='test_author' + str(i))
             author = author[0]
             date = pytz.utc.localize(datetime.now())
-            content = 'etnry content ' + str(i)
+            content = 'entry content ' + str(i)
             tldr = 'tldr ' + str(i)
 
             # load values into model:

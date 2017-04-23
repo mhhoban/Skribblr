@@ -4,7 +4,7 @@
   <head>
     <title> Skribblr Author Portal: Previous Entries </title>
     <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
-    <link rel="stylesheet" href="{% static 'css/skribblr_portal.css' %}">
+    <link rel="stylesheet" href="{% static 'css/skribblr-portal.css' %}">
   </head>
 
   <body>
@@ -12,11 +12,21 @@
 
     {% for entry in entries %}
       <div class="row">
-        {{ entry.title }}
-
-        {{ entry.tldr }}
-
-        <a href="/portal/edit/{{entry.id}}"> Edit </a>
+        <div class="col-md-3">
+          {{ entry.title }}
+        </div>
+        <div class="col-md-3">
+          {{ entry.tldr }}
+        </div>
+        <div class="col-md-2">
+          <a href="/entry/{{entry.id}}"> View </a>
+        </div>
+        <div class="col-md-2">
+          <a href="/portal/edit/{{entry.id}}"> Edit </a>
+        </div>
+        <div class="col-md-2">
+          <a href="/portal/delete/{{entry.id}}"> Delete </a>
+        </div>
 
       </div>
 

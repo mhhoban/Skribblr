@@ -7,6 +7,11 @@ from skribblr.models import Author, Entry
 def home_page(request):
     return render(request, 'home.html')
 
+def view_entry(request, entry_id):
+    entry_id = int(entry_id)
+    entry = Entry.objects.get(id=entry_id)
+    return render(request, 'view-entry.html', {'entry': entry})
+
 def author_portal_home(request):
     return render(request, 'portal-home.html')
 
@@ -25,14 +30,15 @@ def portal_add_entry(request):
         content= request.POST['entry_content'],
         tldr = request.POST['entry_tldr']
     )
-    return render(request, 'portal-home.html')
+
+    return redirect('/portal')
 
 def portal_list_entries(request):
     entries = Entry.objects.all()
     return render(request, 'portal-list.html', {'entries': entries})
 
 def portal_edit_entry(request, entry_id):
-    entry = Entry.objects.get(id=int(entry_id)).first()
+    entry = Entry.objects.get(id=int(entry_id))
     return render(request, 'portal-edit.html', {'entry': entry})
 
 def portal_update_entry(request, entry_id):
@@ -51,7 +57,7 @@ def portal_delete_entry(request, entry_id):
     Delete entry with PK entry_id from DB
     """
 
-    if request.method != 'DELETE':
+    if request.method != 'POST':
         return(HttpResponse(status=404))
 
     else:
@@ -60,4 +66,4 @@ def portal_delete_entry(request, entry_id):
         except DoesNotExist:
             return(HttpResponse(status=404))
         if(entry.delete()):
-            return(HttpResponse(status=200))
+            return redirect('/portal/entry-list')

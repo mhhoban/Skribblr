@@ -20,6 +20,7 @@ from skribblr import urls as skribblr_urls
 
 urlpatterns = [
     url(r'^$', skribblr_views.home_page, name='home'),
+    url(r'^entry/(\d+)$', skribblr_views.view_entry, name='view entry'),
     url(r'^portal$', skribblr_views.author_portal_home, name='author portal'),
     url(r'^portal/', include(skribblr_urls)),
 ]
